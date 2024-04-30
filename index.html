@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMOTION DETECTOR WITH CNN</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>EMOTION RECOGNITION</h1>
+    <button id="startButton" href="model\emotion_model.json">Allow Camera Access</button>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                // Permission granted, redirect to the Python script
+                window.location.href = 'model\emotion_model.json';
+            } catch (error) {
+                console.error('Error accessing the camera:', error);
+                alert('Failed to access the camera. Please grant camera access to proceed.');
+            }
+        }
+
+        startButton.addEventListener('click', startCamera);
+    </script>
+</body>
+</html>
